@@ -13,4 +13,24 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/index-de.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://v4ulthunt3r.github.io/lidshift-website/index.html"/>
   </url>
+  <url>
+    <loc>https://v4ulthunt3r.github.io/lidshift-website/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/support-de.html"/>
+  </url>
+  <url>
+    <loc>https://v4ulthunt3r.github.io/lidshift-website/support-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/support-de.html"/>
+  </url>
+  <url>
+    <loc>https://v4ulthunt3r.github.io/lidshift-website/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/privacy-de.html"/>
+  </url>
+  <url>
+    <loc>https://v4ulthunt3r.github.io/lidshift-website/privacy-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/privacy-de.html"/>
+  </url>
 </urlset>

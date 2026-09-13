@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legal Notice | LidShift</title>
-  <meta name="description" content="Legal notice and provider identification for LidShift.">
-  <meta name="robots" content="noindex">
-  <link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/impressum.html">
-  <link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/impressum-de.html">
+  <title>Support | LidShift</title>
+  <meta name="description" content="Help for LidShift: contact, compatibility, Screen Recording permission, effects that don't start, and frequently asked questions.">
+  <link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/support.html">
+  <link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/support-de.html">
+  <link rel="canonical" href="https://v4ulthunt3r.github.io/lidshift-website/support.html">
   <meta name="theme-color" content="#070E1C" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
   <link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png">
@@ -70,65 +70,146 @@
       <span>LidShift</span>
     </a>
     <div class="nav-right">
+      <a class="nav-link hide-sm" href="index.html#effects">Effects</a>
       <a class="nav-link hide-sm" href="index.html#requirements">Requirements</a>
-      <a class="nav-link hide-sm" href="support.html">Support</a>
       <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch between light and dark" aria-pressed="true">
         <svg class="ico" id="theme-icon" aria-hidden="true"><use href="#i-moon"/></svg>
       </button>
-      <a class="nav-link" href="impressum-de.html" hreflang="de" lang="de">DE</a>
+      <a class="nav-link" href="support-de.html" hreflang="de" lang="de">DE</a>
     </div>
   </div>
 </nav>
 
 <main class="doc" id="main">
-  <h1>Legal Notice</h1>
-  <p class="doc-meta">Information according to § 5 DDG (German Digital Services Act)</p>
+  <h1>Support</h1>
+  <p class="doc-meta">LidShift is a one-person project, and that person reads every email.</p>
 
   <section>
-    <h2><svg class="ico" aria-hidden="true"><use href="#i-note"/></svg> Provider</h2>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> Get in touch</h2>
     <p>
-      <strong>Peter Hildel</strong><br>
-      Gustav-Adolf-Str. 19<br>
-      90513 Zirndorf<br>
-      Germany
+      A bug, a question, a MacBook where LidShift works — or one where it doesn’t — write to
+      <a href="mailto:info@hildel.com?subject=LidShift%20Support">info@hildel.com</a>. Answers usually take a day or two.
+    </p>
+    <p>
+      For problems, these help most: your Mac model and macOS version, the selected effect, and the two
+      status lines under <strong>Advanced</strong> in the menu bar panel (for example
+      <em>Sensor: Active</em> and <em>Ready — close lid below 90°</em>).
+    </p>
+    <p class="doc-action">
+      <a href="mailto:info@hildel.com?subject=LidShift%20Support" class="btn btn-primary">
+        <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> Write an email
+      </a>
     </p>
   </section>
 
   <section>
-    <h2><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> Contact</h2>
-    <p>Email: <a href="mailto:info@hildel.com">info@hildel.com</a></p>
-  </section>
-
-  <section>
-    <h2><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg> VAT</h2>
-    <p>Exempt from VAT pursuant to § 19 UStG (small business regulation).</p>
-  </section>
-
-  <section>
-    <h2><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> Responsible for the content</h2>
-    <p>Peter Hildel, address as above.</p>
-  </section>
-
-  <section>
-    <h2><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> Consumer dispute resolution</h2>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg> Which Macs are supported?</h2>
     <p>
-      I am neither obliged nor willing to participate in dispute resolution proceedings before a consumer
-      arbitration board.
+      A MacBook running macOS 15.0 or later whose hinge reports a lid angle. Apple doesn’t document that sensor,
+      so there is no official model list. The first-run guide checks it live: if it says
+      <em>Your MacBook is compatible</em>, you’re set. On a Mac without the sensor, LidShift shows
+      <em>Unsupported / unavailable</em> and keeps running harmlessly. Effects only ever appear on the built-in
+      display.
     </p>
   </section>
 
   <section>
-    <h2><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg> Trademarks and third-party content</h2>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg> Troubleshooting</h2>
+
+    <h3>The effect doesn’t start when I close the lid.</h3>
     <p>
-      Apple, the Apple logo, Mac, MacBook, macOS, Metal and App Store are trademarks of Apple Inc.
-      LidShift is an independent project and is not affiliated with, endorsed by or sponsored by
-      Apple Inc. Any other names and logos mentioned here belong to their respective owners and are
-      used solely to describe what the app does. No affiliation or endorsement is implied.
+      Check three things in the menu bar panel: the <strong>Active</strong> switch is on, an effect is selected,
+      and — for every effect except Dim — Screen Recording is allowed. Then open the lid <em>above</em> the start
+      angle (90° by default) so the effect can arm, and close it slowly. The status line under Advanced should
+      read <em>Ready — close lid below 90°</em> before you start.
+    </p>
+
+    <h3>How do I allow Screen Recording later?</h3>
+    <p>
+      Use <strong>Allow screen recording…</strong> in the menu bar panel, or run the guide again with
+      <strong>Advanced → Getting Started…</strong>. You can also switch it on in System Settings →
+      Privacy &amp; Security → Screen &amp; System Audio Recording. If macOS asks, quit and reopen LidShift
+      afterwards.
+    </p>
+
+    <h3>The panel says “Unsupported / unavailable” or “Access denied”.</h3>
+    <p>
+      <em>Unsupported / unavailable</em> means no matching sensor was found — the Mac may not have one, or macOS
+      may be hiding it. <em>Access denied</em> means the sensor exists but couldn’t be read. In both cases, please
+      send your Mac model, macOS version and any error code shown; it helps map which Macs work.
+    </p>
+
+    <h3>It says “Capture failed” or “Rendering failed”.</h3>
+    <p>
+      LidShift tries one capture per close. Open the lid above the start angle again to retry. If it keeps
+      failing, check the Screen Recording permission and send me the exact message.
+    </p>
+
+    <h3>My desktop looks frozen while the lid is half closed.</h3>
+    <p>
+      That’s expected: the effect works on a single still image of the moment you crossed the start angle. Your
+      apps keep running underneath, and clicks go straight through the overlay. Open the lid fully and the live
+      desktop is back.
+    </p>
+
+    <h3>Something is missing from the image.</h3>
+    <p>
+      LidShift leaves out its own windows and the pointer, and macOS may keep protected content — such as some
+      video players — out of any screen capture.
+    </p>
+
+    <h3>The motion stutters.</h3>
+    <p>
+      Rendering targets 60 FPS while the lid moves. On a ProMotion display, try
+      <strong>Advanced → ProMotion · up to 120 FPS</strong>. The sensor itself reports about 30 times a second in
+      whole degrees, so very fast movements can still look stepped.
+    </p>
+
+    <h3>Launch at Login doesn’t stick.</h3>
+    <p>
+      Keep LidShift in a fixed place such as the Applications folder before switching it on. If the panel says the
+      login item needs approval, open <strong>Advanced → Login item settings…</strong> and allow it there.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg> Frequently asked</h2>
+
+    <h3>How do I change the effect or when it starts?</h3>
+    <p>
+      Pick the effect in the menu bar panel. <strong>Effect Settings</strong> (⌘,) sets the start angle between
+      60° and 120° and, for Glass, refraction, blur, glass and darkening. <strong>Restore defaults</strong> resets
+      them. Everything is saved automatically.
+    </p>
+
+    <h3>Does LidShift change my brightness or keep my Mac awake?</h3>
+    <p>
+      No. Dim is a black overlay, not a brightness change, and LidShift never prevents sleep. After waking, the
+      sensor reconnects on its own within a few seconds.
+    </p>
+
+    <h3>Does anything leave my Mac?</h3>
+    <p>
+      No. The captured frame lives only in memory and is released when you reopen the lid, switch effects, pause or
+      quit. Nothing is recorded, saved or sent, and there is no account, analytics or network access. Details are in the <a href="privacy.html">privacy policy</a>.
+    </p>
+
+    <h3>How do I pause or turn it off?</h3>
+    <p>
+      Flip the <strong>Active</strong> switch in the panel — your chosen effect is kept. <strong>Quit LidShift</strong>
+      at the bottom of the panel closes the app completely.
+    </p>
+
+    <h3>How do I remove LidShift?</h3>
+    <p>
+      Turn off Launch at Login, quit the app and move it to the Trash. Its saved settings sit in
+      <code>~/Library/Containers/com.hildel.LidShift</code>, which you can delete too. The Screen Recording entry
+      can be removed in System Settings.
     </p>
   </section>
 
   <div class="back">
-    <a href="index.html" class="btn btn-primary">
+    <a href="index.html" class="btn btn-secondary">
       <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg> Back to the app page
     </a>
   </div>
@@ -142,7 +223,7 @@
       <a href="support.html">Support</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="impressum.html">Legal Notice</a>
-      <a class="lang" href="impressum-de.html" hreflang="de" lang="de">Deutsch</a>
+      <a class="lang" href="support-de.html" hreflang="de" lang="de">Deutsch</a>
     </div>
     <p class="footer-note tiny">© <span id="year">2026</span> Peter Hildel</p>
   </div>

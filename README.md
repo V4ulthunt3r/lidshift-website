@@ -9,6 +9,8 @@ English is the default; German lives alongside it.
 | Page | English | German |
 | --- | --- | --- |
 | Landing | `index.html` | `index-de.html` |
+| Support | `support.html` | `support-de.html` |
+| Privacy policy | `privacy.html` | `privacy-de.html` |
 | Legal notice | `impressum.html` | `impressum-de.html` |
 
 ## Structure

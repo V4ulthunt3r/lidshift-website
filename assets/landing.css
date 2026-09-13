@@ -920,6 +920,18 @@ input[type="range"]:focus-visible { outline: 3px solid var(--accent); outline-of
 .doc p { color: var(--text-sec); font-size: 0.9688rem; line-height: 1.68; }
 .doc p strong { color: var(--text); }
 .doc .back { text-align: center; margin-top: 2.75rem; }
+.doc h3 { font-size: 1rem; color: var(--text); margin: 1.4rem 0 0.3rem; }
+.doc h2 + h3 { margin-top: 0.4rem; }
+.doc p + p { margin-top: 0.75rem; }
+.doc .doc-action { margin-top: 1.25rem; }
+.doc ul { margin: 0.75rem 0; padding-left: 1.2rem; color: var(--text-sec); font-size: 0.9688rem; line-height: 1.68; }
+.doc li + li { margin-top: 0.4rem; }
+.doc li strong { color: var(--text); }
+.doc ul + p { margin-top: 0.75rem; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.25rem; margin: 0 0 0.9rem; font-size: 0.9688rem; }
+.kv dt { color: var(--text-ter); }
+.kv dd { margin: 0; color: var(--text); }
+.doc code { font-size: 0.875em; white-space: normal; overflow-wrap: anywhere; }
 
 /* ---------- Footer ------------------------------------------------------- */
 .footer {

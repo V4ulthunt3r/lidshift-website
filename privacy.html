@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | LidShift</title>
+  <meta name="description" content="Privacy policy for LidShift: no account, no analytics, no network access — the screen capture stays in memory on your Mac.">
+  <link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/privacy.html">
+  <link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/privacy-de.html">
+  <link rel="canonical" href="https://v4ulthunt3r.github.io/lidshift-website/privacy.html">
+  <meta name="theme-color" content="#070E1C" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light') document.documentElement.classList.remove('dark');
+        else if (saved === 'dark') document.documentElement.classList.add('dark');
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches)
+          document.documentElement.classList.remove('dark');
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/landing.css?v=3">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="ambient" aria-hidden="true"><i class="amb amb-1"></i><i class="amb amb-2"></i></div>
+
+<svg class="lidshift-icons" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-laptop" viewBox="0 0 24 24"><path d="M5 5.5h14a1 1 0 0 1 1 1v9H4v-9a1 1 0 0 1 1-1Z"/><path d="M2 15.5h20l-1.4 2.3a1.6 1.6 0 0 1-1.4.7H4.8a1.6 1.6 0 0 1-1.4-.7Z"/></symbol>
+<symbol id="i-angle" viewBox="0 0 24 24"><path d="M3.5 19.5h17"/><path d="M3.5 19.5 15.5 6"/><path d="M19.2 12.4a8.2 8.2 0 0 0-2.6-4.6"/></symbol>
+<symbol id="i-glass" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 12.5h17"/><path d="M6.5 8h5M6.5 16.8h3"/></symbol>
+<symbol id="i-shutter" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 10.5h17" /><path d="M4 7h16M4 4.6h16" /></symbol>
+<symbol id="i-paper" viewBox="0 0 24 24"><path d="M6 2.8h8.4L19 7.4V21a.8.8 0 0 1-.8.8H6a.8.8 0 0 1-.8-.8V3.6A.8.8 0 0 1 6 2.8Z"/><path d="M14 2.9v4.6h4.7"/><path d="M8 12.5h7M8 16.3h4.5"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M8 2.5l4 3 4-3"/><path d="M6 12h12"/></symbol>
+<symbol id="i-dim" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4"/><path d="M12 4.2V2.5M12 21.5v-1.7M5.5 5.5 4.3 4.3M19.7 19.7l-1.2-1.2M4.2 12H2.5M21.5 12h-1.7"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17.5 7H20M4 17h3M11.5 17H20"/><circle cx="15" cy="7" r="2.3"/><circle cx="9" cy="17" r="2.3"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.2 17.5a9.5 9.5 0 1 1 17.6 0"/><path d="M12 13.5 16 9.8"/><circle cx="12" cy="14.4" r="1.4"/></symbol>
+<symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3.2v8"/><path d="M6.6 6.4a7.5 7.5 0 1 0 10.8 0"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2.2"/><path d="M10 3.5v2.6M14 3.5v2.6M10 17.9v2.6M14 17.9v2.6M3.5 10h2.6M3.5 14h2.6M17.9 10h2.6M17.9 14h2.6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M7.8 10.5V7.2a4.2 4.2 0 0 1 8.4 0v3.3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 4 5.7v5.6c0 4.6 3.2 8.6 8 10.2 4.8-1.6 8-5.6 8-10.2V5.7Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="m8 12.3 2.8 2.8L16.2 9"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 10.8v6M12 7.6h.01"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4.5v15"/><path d="m6 13.5 6 6 6-6"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 11V5.4a1.9 1.9 0 0 1 3.8 0V11"/><path d="M11.8 11V4.3a1.9 1.9 0 0 1 3.8 0V11"/><path d="M15.6 11.6V6.9a1.9 1.9 0 0 1 3.8 0V14a7.5 7.5 0 0 1-7.5 7.5h-.8a7 7 0 0 1-6.6-4.7L3 13.2a1.9 1.9 0 0 1 3.3-1.8L8 13.6V11"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3.5h9.5L19 8v12.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-16a1 1 0 0 1 1-1Z"/><path d="M14 3.6V8h4.6"/><path d="M8 13h8M8 17h5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8"/><path d="M12 2.5a14.5 14.5 0 0 1 0 19 14.5 14.5 0 0 1 0-19Z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.6 6.2A9.7 9.7 0 0 1 12 6c5.5 0 9.5 6 9.5 6a17 17 0 0 1-3 3.6"/><path d="M6.6 7.6A17 17 0 0 0 2.5 12S6.5 18 12 18a9.6 9.6 0 0 0 4.1-.9"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m3 3 18 18"/></symbol>
+<symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M2.5 8.5a14 14 0 0 1 6-3.3M15 5.3a14 14 0 0 1 6.5 3.2"/><path d="M6 12.2a9 9 0 0 1 3-1.9M18 12.2a9 9 0 0 0-2.2-1.5"/><path d="M9.4 15.8a4.2 4.2 0 0 1 5.2 0"/><path d="M12 19.2h.01"/><path d="m3 3 18 18"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8.5 8-4.5 4 4.5 4M15.5 8l4.5 4-4.5 4"/></symbol>
+</defs></svg>
+
+<div id="nav-top" aria-hidden="true"></div>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/icon-256.png" alt="" width="30" height="30">
+      <span>LidShift</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link hide-sm" href="index.html#effects">Effects</a>
+      <a class="nav-link hide-sm" href="index.html#requirements">Requirements</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch between light and dark" aria-pressed="true">
+        <svg class="ico" id="theme-icon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <a class="nav-link" href="privacy-de.html" hreflang="de" lang="de">DE</a>
+    </div>
+  </div>
+</nav>
+
+<main class="doc" id="main">
+  <h1>Privacy Policy</h1>
+  <p class="doc-meta">LidShift for Mac · Last updated: 13 September 2026</p>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> The short version</h2>
+    <p>
+      LidShift collects no personal data. It has no account, no analytics, no advertising and no third-party SDKs —
+      and it cannot connect to the internet at all: the app runs in Apple’s App Sandbox with network access switched
+      off.
+    </p>
+    <p>
+      To animate your desktop, LidShift captures a single image of your built-in display. That image exists only in
+      memory, only for as long as the effect runs, and is never saved, recorded or sent anywhere. I never receive it.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-note"/></svg> 1. Controller</h2>
+    <dl class="kv">
+      <dt>Name</dt><dd>Peter Hildel</dd>
+      <dt>Address</dt><dd>Gustav-Adolf-Str. 19, 90513 Zirndorf, Germany</dd>
+      <dt>Email</dt><dd><a href="mailto:info@hildel.com?subject=LidShift%20Privacy">info@hildel.com</a></dd>
+    </dl>
+    <p>
+      Controller within the meaning of Art. 4(7) GDPR for the processing described below. There is no statutory
+      obligation to appoint a data protection officer.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-angle"/></svg> 2. The lid angle sensor</h2>
+    <p>
+      While LidShift is active, it reads the opening angle of your MacBook’s hinge from the built-in sensor about
+      thirty times a second. Only the current angle in whole degrees is used, to drive the effect and to show it in
+      the menu bar panel. Angle readings are not stored, not logged and not transmitted.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-eye-off"/></svg> 3. Screen capture</h2>
+    <p>
+      Every effect except Dim needs macOS’s <strong>Screen Recording</strong> permission. LidShift only asks for it
+      when you choose to allow it — in the first-run guide or with the button in the menu — and you can revoke it at
+      any time in System Settings → Privacy &amp; Security → Screen &amp; System Audio Recording.
+    </p>
+    <p>With the permission granted, LidShift works like this:</p>
+    <ul>
+      <li><strong>One still image per close.</strong> When the lid passes the start angle on the way down, the app
+        captures a single frame of the built-in display using Apple’s ScreenCaptureKit. It does not record video and
+        captures no audio. LidShift’s own windows and the pointer are left out.</li>
+      <li><strong>Memory only.</strong> The frame is turned into a graphics texture for the effect. It is never written
+        to disk, never cached and never leaves your Mac.</li>
+      <li><strong>Released right away.</strong> The image is discarded as soon as you reopen the lid, switch effects,
+        pause LidShift, quit it, or when an error occurs.</li>
+    </ul>
+    <p>
+      The captured frame may of course show whatever was on your screen, including personal content. It is processed
+      exclusively on your device, solely to display the effect you selected, and is not accessible to me or anyone
+      else. External displays are never captured.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg> 4. Settings stored on your Mac</h2>
+    <p>So that LidShift remembers your choices, it saves these values in its own sandboxed container on your Mac:</p>
+    <ul>
+      <li>the selected effect and whether LidShift is active,</li>
+      <li>the start angle and the Glass settings (refraction, blur, glass, darkening),</li>
+      <li>the ProMotion preference,</li>
+      <li>whether you have completed the first-run guide.</li>
+    </ul>
+    <p>
+      None of these values identify you, and none are transmitted. If you turn on <strong>Launch at Login</strong>,
+      the app registers itself as a login item with macOS; that entry is managed by macOS and can be removed in
+      System Settings → General → Login Items. Deleting the app together with
+      <code>~/Library/Containers/com.hildel.LidShift</code> removes all stored settings.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-wifi-off"/></svg> 5. No network, no tracking</h2>
+    <p>
+      LidShift contains no analytics or crash-reporting SDK, no advertising and no tracking of any kind. The app’s
+      sandbox entitlements do not allow incoming or outgoing network connections, so it has no way to send data. It
+      does not use input monitoring, accessibility access, a helper tool or any privileged process.
+    </p>
+    <p>
+      If you have enabled “Share with App Developers” in macOS, Apple may provide me with anonymised crash reports
+      and usage statistics. That sharing is controlled by you in System Settings → Privacy &amp; Security → Analytics
+      &amp; Improvements and is governed by
+      <a href="https://www.apple.com/legal/privacy/" rel="noopener" target="_blank">Apple’s privacy policy</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg> 6. Download and distribution</h2>
+    <p>
+      If you obtain LidShift through Apple’s App Store, Apple processes the data needed for the download, your
+      Apple Account and any purchase as an independent controller under its own privacy policy. I receive no
+      personal data about you from that, only aggregated sales and download figures.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> 7. Contacting me</h2>
+    <p>
+      If you write to me by email — for support, feedback or a compatibility report — I process your email address,
+      your message and anything you include (for example your Mac model or macOS version) to answer it. Legal basis:
+      Art. 6(1)(b) GDPR where your request relates to using the app, otherwise Art. 6(1)(f) GDPR (legitimate interest
+      in answering enquiries). Emails are deleted once the matter is resolved, unless statutory retention periods
+      apply.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> 8. This website</h2>
+    <p>
+      This website is static and hosted on GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco,
+      CA 94107, USA). When you visit it, the hosting provider processes technical connection data — IP address, time
+      of request, requested file, referrer and user agent — in server log files, which is technically necessary to
+      deliver the page. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in operating a functioning website).
+    </p>
+    <p>
+      The site sets <strong>no cookies</strong> and uses no analytics. All stylesheets, scripts and images are served
+      from this site itself, and no external fonts are loaded, so <strong>no third party receives your IP
+      address</strong> when you open a page. Your light/dark preference is stored locally in your browser
+      (localStorage) and never leaves your device. The interactive lid demo runs entirely in your browser.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg> 9. Recipients and transfers outside the EU</h2>
+    <ul>
+      <li><strong>GitHub Inc.</strong> — hosting of this website.</li>
+      <li><strong>Apple</strong> — App Store distribution and, if you opted in, crash reports and analytics.</li>
+    </ul>
+    <p>
+      These providers may process data in the USA. The transfers are based on the EU standard contractual clauses
+      and, where applicable, the EU–US Data Privacy Framework. The app itself passes no data to anyone. Nothing is
+      shared for advertising, and nothing is sold.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg> 10. Retention and your rights</h2>
+    <p>
+      The captured frame lasts only as long as an effect runs; settings stay on your Mac until you delete them.
+      Server logs at the hosting provider are deleted according to its own retention periods.
+    </p>
+    <p>
+      You have the right to information (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of
+      processing (Art. 18), data portability (Art. 20) and to object (Art. 21 GDPR). One email to
+      <a href="mailto:info@hildel.com?subject=LidShift%20Privacy">info@hildel.com</a> is enough. Because LidShift stores no personal data on my side, a request
+      for information will usually be answered with exactly that.
+    </p>
+    <p>
+      You also have the right to lodge a complaint with a supervisory authority — for me that is the Bavarian Data
+      Protection Authority (Bayerisches Landesamt für Datenschutzaufsicht), Promenade 18, 91522 Ansbach, Germany.
+    </p>
+  </section>
+
+  <section>
+    <h2><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg> 11. Changes to this policy</h2>
+    <p>
+      If LidShift gains features that change how data is handled, this page will be updated before those features
+      ship. The date at the top always shows the current version.
+    </p>
+  </section>
+
+  <div class="back">
+    <a href="index.html" class="btn btn-secondary">
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg> Back to the app page
+    </a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#effects">Effects</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="impressum.html">Legal Notice</a>
+      <a class="lang" href="privacy-de.html" hreflang="de" lang="de">Deutsch</a>
+    </div>
+    <p class="footer-note tiny">© <span id="year">2026</span> Peter Hildel</p>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=1"></script>
+</body>
+</html>
