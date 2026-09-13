@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://v4ulthunt3r.github.io/lidshift-website/sitemap.xml

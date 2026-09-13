@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LidShift — Move the lid. Set the mood.</title>
+  <meta name="description" content="LidShift is a macOS menu bar utility that reads your MacBook’s real hinge angle and turns closing the lid into an effect on your desktop: frosted glass, curling paper, windblown dust, a slow burn, shattering ice or a CRT winking out.">
+  <link rel="canonical" href="https://v4ulthunt3r.github.io/lidshift-website/">
+  <link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/index.html">
+  <link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/index-de.html">
+  <link rel="alternate" hreflang="x-default" href="https://v4ulthunt3r.github.io/lidshift-website/index.html">
+  <meta name="theme-color" content="#070E1C" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LidShift — Move the lid. Set the mood.">
+  <meta property="og:description" content="A macOS menu bar utility that reads your MacBook’s real hinge angle and turns closing the lid into an effect on your desktop.">
+  <meta property="og:image" content="https://v4ulthunt3r.github.io/lidshift-website/assets/icon-512.png">
+  <meta property="og:locale" content="en">
+  <meta property="og:locale:alternate" content="de">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <script>
+    /* Dark is this app’s home, but the user's choice always wins. */
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light') document.documentElement.classList.remove('dark');
+        else if (saved === 'dark') document.documentElement.classList.add('dark');
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches)
+          document.documentElement.classList.remove('dark');
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/landing.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="ambient" aria-hidden="true"><i class="amb amb-1"></i><i class="amb amb-2"></i><i class="amb amb-3"></i></div>
+
+<svg class="lidshift-icons" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-laptop" viewBox="0 0 24 24"><path d="M5 5.5h14a1 1 0 0 1 1 1v9H4v-9a1 1 0 0 1 1-1Z"/><path d="M2 15.5h20l-1.4 2.3a1.6 1.6 0 0 1-1.4.7H4.8a1.6 1.6 0 0 1-1.4-.7Z"/></symbol>
+<symbol id="i-angle" viewBox="0 0 24 24"><path d="M3.5 19.5h17"/><path d="M3.5 19.5 15.5 6"/><path d="M19.2 12.4a8.2 8.2 0 0 0-2.6-4.6"/></symbol>
+<symbol id="i-glass" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 12.5h17"/><path d="M6.5 8h5M6.5 16.8h3"/></symbol>
+<symbol id="i-shutter" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 10.5h17" /><path d="M4 7h16M4 4.6h16" /></symbol>
+<symbol id="i-paper" viewBox="0 0 24 24"><path d="M6 2.8h8.4L19 7.4V21a.8.8 0 0 1-.8.8H6a.8.8 0 0 1-.8-.8V3.6A.8.8 0 0 1 6 2.8Z"/><path d="M14 2.9v4.6h4.7"/><path d="M8 12.5h7M8 16.3h4.5"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M8 2.5l4 3 4-3"/><path d="M6 12h12"/></symbol>
+<symbol id="i-dim" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4"/><path d="M12 4.2V2.5M12 21.5v-1.7M5.5 5.5 4.3 4.3M19.7 19.7l-1.2-1.2M4.2 12H2.5M21.5 12h-1.7"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17.5 7H20M4 17h3M11.5 17H20"/><circle cx="15" cy="7" r="2.3"/><circle cx="9" cy="17" r="2.3"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.2 17.5a9.5 9.5 0 1 1 17.6 0"/><path d="M12 13.5 16 9.8"/><circle cx="12" cy="14.4" r="1.4"/></symbol>
+<symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3.2v8"/><path d="M6.6 6.4a7.5 7.5 0 1 0 10.8 0"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2.2"/><path d="M10 3.5v2.6M14 3.5v2.6M10 17.9v2.6M14 17.9v2.6M3.5 10h2.6M3.5 14h2.6M17.9 10h2.6M17.9 14h2.6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M7.8 10.5V7.2a4.2 4.2 0 0 1 8.4 0v3.3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 4 5.7v5.6c0 4.6 3.2 8.6 8 10.2 4.8-1.6 8-5.6 8-10.2V5.7Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="m8 12.3 2.8 2.8L16.2 9"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 10.8v6M12 7.6h.01"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4.5v15"/><path d="m6 13.5 6 6 6-6"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 11V5.4a1.9 1.9 0 0 1 3.8 0V11"/><path d="M11.8 11V4.3a1.9 1.9 0 0 1 3.8 0V11"/><path d="M15.6 11.6V6.9a1.9 1.9 0 0 1 3.8 0V14a7.5 7.5 0 0 1-7.5 7.5h-.8a7 7 0 0 1-6.6-4.7L3 13.2a1.9 1.9 0 0 1 3.3-1.8L8 13.6V11"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3.5h9.5L19 8v12.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-16a1 1 0 0 1 1-1Z"/><path d="M14 3.6V8h4.6"/><path d="M8 13h8M8 17h5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8"/><path d="M12 2.5a14.5 14.5 0 0 1 0 19 14.5 14.5 0 0 1 0-19Z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.6 6.2A9.7 9.7 0 0 1 12 6c5.5 0 9.5 6 9.5 6a17 17 0 0 1-3 3.6"/><path d="M6.6 7.6A17 17 0 0 0 2.5 12S6.5 18 12 18a9.6 9.6 0 0 0 4.1-.9"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m3 3 18 18"/></symbol>
+<symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M2.5 8.5a14 14 0 0 1 6-3.3M15 5.3a14 14 0 0 1 6.5 3.2"/><path d="M6 12.2a9 9 0 0 1 3-1.9M18 12.2a9 9 0 0 0-2.2-1.5"/><path d="M9.4 15.8a4.2 4.2 0 0 1 5.2 0"/><path d="M12 19.2h.01"/><path d="m3 3 18 18"/></symbol>
+<symbol id="i-dust" viewBox="0 0 24 24"><path d="M2.5 10.5h9.2a2.8 2.8 0 1 0-2.8-2.8"/><path d="M2.5 14.5h12.8a2.8 2.8 0 1 1-2.8 2.8"/><circle cx="17.6" cy="7.4" r=".7"/><circle cx="20.6" cy="10.8" r=".55"/><circle cx="19.4" cy="4.2" r=".45"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21.5c-4.1 0-7-2.9-7-6.7 0-3.5 2.4-5.4 4.1-8 .8 1.6 1.7 2.6 3 3.1-.1-2.8.9-5.4 3-7.4.4 3.2 4.9 6 4.9 11.3 0 4.5-3.5 7.7-8 7.7Z"/><path d="M12 21.5c-1.8 0-3.2-1.3-3.2-3.1 0-1.8 1.5-3 3.2-4.9 1.7 1.9 3.2 3.1 3.2 4.9 0 1.8-1.4 3.1-3.2 3.1Z"/></symbol>
+<symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2.5v19M3.8 7.25l16.4 9.5M3.8 16.75l16.4-9.5"/><path d="m9.4 4.1 2.6 2 2.6-2M9.4 19.9l2.6-2 2.6 2"/><path d="m3.6 10.3 3.1-1.2-.5-3.3M20.4 13.7l-3.1 1.2.5 3.3"/><path d="m6.2 18.2.5-3.3-3.1-1.2M17.8 5.8l-.5 3.3 3.1 1.2"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8.5 8-4.5 4 4.5 4M15.5 8l4.5 4-4.5 4"/></symbol>
+</defs></svg>
+
+<!-- Filters the demo's Burn and Freeze & Shatter layers reference. lid.js tunes #ice per frame. -->
+<svg class="fx-filters" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <filter id="burn-edge" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="11" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="ice" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="4" result="noise"/>
+    <feDisplacementMap data-ice-bend in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" result="bent"/>
+    <feColorMatrix data-ice-matrix in="bent" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="tinted"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.77  0 0 0 0 0.91  0 0 0 0 0.98  1.7 0 0 0 -0.72" result="frost"/>
+    <feComponentTransfer in="frost" result="rime"><feFuncA data-ice-rime type="linear" slope="0" intercept="0"/></feComponentTransfer>
+    <feComposite in="rime" in2="bent" operator="in" result="rimeOnIce"/>
+    <feMerge><feMergeNode in="tinted"/><feMergeNode in="rimeOnIce"/></feMerge>
+  </filter>
+</svg>
+
+<div id="nav-top" aria-hidden="true"></div>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/icon-256.png" alt="" width="30" height="30">
+      <span>LidShift</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link hide-sm" href="#effects">Effects</a>
+      <a class="nav-link hide-sm" href="#how">How it works</a>
+      <a class="nav-link hide-sm" href="#requirements">Requirements</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch between light and dark" aria-pressed="true">
+        <svg class="ico" id="theme-icon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <a class="nav-link" href="index-de.html" hreflang="de" lang="de">DE</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ============================ Hero ============================ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <img class="hero-icon" src="assets/icon-512.png" alt="LidShift app icon" width="96" height="96">
+        <p class="eyebrow">macOS menu bar utility</p>
+        <h1>Move the lid.<br><span class="accent">Set the mood.</span></h1>
+        <p class="lede">
+          Your MacBook knows exactly how far its hinge is open — down to the degree.
+          LidShift reads that angle and turns the last stretch of closing into
+          something worth watching.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#effects">
+            See the effects
+            <svg class="ico" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="#requirements">What it needs</a>
+        </div>
+        <div class="pill-row">
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg> Built-in display only</span>
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-wifi-off"/></svg> Nothing leaves your Mac</span>
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-power"/></svg> Lives in the menu bar</span>
+        </div>
+      </div>
+
+      <!-- The demo. Grab the lid; the desktop answers on the same frame. -->
+      <div class="demo" id="demo">
+        <div class="demo-top">
+          <div>
+            <p class="angle-label" id="angle-label">Lid angle</p>
+            <p class="angle-readout" aria-hidden="true">
+              <span class="value" data-angle-value>106</span><span class="unit">°</span>
+            </p>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <svg viewBox="0 0 60 56" width="56" height="52" aria-hidden="true" style="overflow:visible">
+              <path data-gauge-arc d="M 36 46 A 26 26 0 0 0 10 20" fill="none" stroke="var(--accent)" stroke-width="3.4" stroke-linecap="round" opacity=".95"/>
+              <path d="M10 46 H 52" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" opacity=".55"/>
+              <path data-gauge-arm d="M10 46 H 40" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+              <circle cx="10" cy="46" r="2.2" fill="currentColor"/>
+            </svg>
+            <span class="grab-hint" data-hint>
+              <svg class="ico" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-hand"/></svg>
+              Drag the lid
+            </span>
+          </div>
+        </div>
+
+        <div class="stage" data-lid-stage>
+          <div class="mac">
+            <div class="lid-hinge" data-lid
+                 role="slider" tabindex="0"
+                 aria-labelledby="angle-label"
+                 aria-valuemin="12" aria-valuemax="132" aria-valuenow="106"
+                 aria-valuetext="106 degrees" data-valuetext="%d degrees">
+              <div class="lid">
+                <div class="screen" data-screen data-effect="glass">
+                  <div class="desktop">
+                    <div class="desk-menubar">
+                      <i></i><i></i><i></i><i></i>
+                      <span class="spacer"></span>
+                      <i class="mb-icon"></i>
+                    </div>
+                    <div class="desk-window">
+                      <div class="titlebar"><b></b><b></b><b></b></div>
+                      <div class="body"><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="desk-dock"><i></i><i></i><i></i><i></i><i></i></div>
+                  </div>
+                  <div class="fx fx-glass"><span class="glass-veil"></span><span class="glass-ridge"></span></div>
+                  <div class="fx fx-shutter"></div>
+                  <div class="fx fx-paper"><span class="paper-void"></span><span class="paper-roll"></span></div>
+                  <div class="fx fx-crt"><span class="crt-void"></span><span class="crt-line"></span></div>
+                  <div class="fx fx-dust"><canvas></canvas></div>
+                  <div class="fx fx-burn"><span class="burn-hole"></span></div>
+                  <div class="fx fx-freeze"></div>
+                  <div class="fx fx-dim"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mac-base"></div>
+            <div class="mac-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <label for="angle-slider">12°</label>
+          <input id="angle-slider" type="range" min="12" max="132" step="1" value="106" data-angle-slider
+                 aria-label="Lid angle in degrees">
+          <label for="angle-slider">132°</label>
+        </div>
+
+        <div class="effect-picker" role="group" aria-label="Choose an effect">
+          <button class="fx-card" type="button" data-effect="glass" aria-pressed="true"
+                  data-caption="<b>Glass.</b> Frost and refraction gather around the moving edge, with a top-heavy shadow that deepens as the lid comes down.">
+            <svg class="ico" aria-hidden="true"><use href="#i-glass"/></svg> Glass
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="shutter" aria-pressed="false"
+                  data-caption="<b>Shutter.</b> A soft dark curtain follows the lid down the display, and travels fully offscreen at either end.">
+            <svg class="ico" aria-hidden="true"><use href="#i-shutter"/></svg> Shutter
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="paper" aria-pressed="false"
+                  data-caption="<b>Paper.</b> The desktop winds downward into one continuous sheet — a wide curl, a matte reverse side, exposed edges and a contact shadow.">
+            <svg class="ico" aria-hidden="true"><use href="#i-paper"/></svg> Paper
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="dust" aria-pressed="false"
+                  data-caption="<b>Dust.</b> A ragged diagonal front breaks the desktop into fine grains that drift up and to the right on curling currents.">
+            <svg class="ico" aria-hidden="true"><use href="#i-dust"/></svg> Dust
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="burn" aria-pressed="false"
+                  data-caption="<b>Burn.</b> An irregular front burns in from all four edges — a glowing ember rim, a charcoal band, then ash fading to black.">
+            <svg class="ico" aria-hidden="true"><use href="#i-flame"/></svg> Burn
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="freeze" aria-pressed="false"
+                  data-caption="<b>Freeze &amp; Shatter.</b> Blue ice and frost creep over the desktop, cracks open up, and the frozen shards turn and fall away.">
+            <svg class="ico" aria-hidden="true"><use href="#i-snow"/></svg> Freeze &amp;&nbsp;Shatter
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="crt" aria-pressed="false"
+                  data-caption="<b>CRT.</b> The picture compresses toward the middle and lets go through a single cool line of light.">
+            <svg class="ico" aria-hidden="true"><use href="#i-tv"/></svg> CRT
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="dim" aria-pressed="false"
+                  data-caption="<b>Dim only.</b> No capture, no permission — just the display fading down as the lid comes with it.">
+            <svg class="ico" aria-hidden="true"><use href="#i-dim"/></svg> Dim
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+        </div>
+
+        <p class="demo-caption" data-caption-out aria-live="polite"></p>
+        <p class="tiny">An illustration of the effects, drawn in your browser. The app renders your real desktop in Metal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Effects ============================ -->
+  <section id="effects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Seven effects, plus a quiet one</p>
+        <h2>Closing the lid, as an event</h2>
+        <p class="lede">
+          Each effect arms when you open past the start angle and plays out as you close.
+          Stop halfway and reverse — it follows you back up, and your sharp desktop returns.
+        </p>
+      </div>
+
+      <div class="effect-list">
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-glass"/></svg></span>
+          <div>
+            <h3>Glass</h3>
+            <p>A sheet of frosted glass closes over the desktop from the top. Refraction and blur concentrate
+              around the rounded moving edge, and a top-heavy shadow advances with the closure — no black gap,
+              ever. Refraction, blur, glass and darkening each have their own slider.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-shutter"/></svg></span>
+          <div>
+            <h3>Shutter</h3>
+            <p>A soft dark curtain descends from the top and covers the display as the lid comes down.
+              At either end of the range it sits completely offscreen, so nothing lingers.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-paper"/></svg></span>
+          <div>
+            <h3>Paper</h3>
+            <p>The desktop winds downward into one continuous 3D sheet, turn over turn around a horizontal
+              axis. A matte, faintly fibrous reverse side catches warm light along the curl, while exposed side
+              edges and a contact shadow give the roll its thickness. Above it the display goes black — live
+              menu bar and Dock included.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-dust"/></svg></span>
+          <div>
+            <h3>Dust</h3>
+            <p>An irregular diagonal front breaks the desktop into fine fragments — 144,000 of them on a
+              jittered mesh. They soften into warm, neutral dust and drift up and to the right on shared, curling
+              currents, in dense ribbons with sparse gaps, until only black is left. Reopen, and every grain
+              finds its way back.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-flame"/></svg></span>
+          <div>
+            <h3>Burn</h3>
+            <p>An irregular front burns inward from all four edges. A bright ember rim leads, a charcoal
+              band trails behind it, and the ash fades to black as the lid comes down. Open again and the
+              desktop un-burns, exactly as it was.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-snow"/></svg></span>
+          <div>
+            <h3>Freeze &amp; Shatter</h3>
+            <p>Translucent blue ice creeps over the desktop: cloudy frost, six-way crystal veins, a little
+              refraction and moving highlights. Bright bevelled cracks open up, then the frozen picture breaks
+              into shards that turn and fall away as the lid closes further.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-tv"/></svg></span>
+          <div>
+            <h3>CRT</h3>
+            <p>The picture compresses vertically toward the centre, then fades out through a single cool
+              line of light — the way a tube television used to let go of an image.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-dim"/></svg></span>
+          <div>
+            <h3>Dim only</h3>
+            <p>The simple one. A black, mouse-transparent overlay over the built-in display, clear above 90°
+              and 60% opaque at 20°. No screen capture and no permission prompt — and no change to your
+              hardware brightness setting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ How ============================ -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>One sensor, one frame, sixty times a second</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-angle"/></svg></span>
+          <h3>It reads the hinge, not a switch</h3>
+          <p>macOS can tell you the lid is open or closed. The hinge itself knows the angle. LidShift polls
+            that internal sensor about thirty times a second through public IOKit HID calls and shows whole
+            degrees — no invented decimals.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-eye-off"/></svg></span>
+          <h3>One frame, held in memory</h3>
+          <p>Cross the start angle on the way down and the app captures a single image of the built-in
+            display, excluding its own windows and the cursor. One capture per close-and-open cycle. Nothing
+            is recorded, saved or sent.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-gauge"/></svg></span>
+          <h3>Metal does the rest</h3>
+          <p>A display-paced draw loop runs at 60 FPS, or up to 120 with the optional ProMotion toggle, while
+            a 45 ms filter smooths the motion between sensor samples. Once it settles, rendering pauses
+            instead of spinning the GPU.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg></span>
+          <h3>Set up in four steps</h3>
+          <p>The first launch walks you through it: what LidShift does, a live check that your hinge sensor
+            answers, why Screen Recording is needed — explained before macOS asks — and a real open-and-close
+            test. <em>Advanced → Getting Started…</em> brings it back anytime.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg></span>
+          <h3>Tuned to taste</h3>
+          <p>Effect Settings holds the start angle from 60° to 120°, plus refraction, blur, glass and
+            darkening for Glass. Changes apply immediately, even with the lid held still — and your effect,
+            its settings and the Active switch are remembered across launches.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg></span>
+          <h3>Out of the way</h3>
+          <p>No Dock icon, no window to manage — one icon in the menu bar, and behind it a compact panel
+            with the live angle, a single Active switch and your effect. The overlay is mouse-transparent, so
+            the apps underneath keep running and stay clickable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Privacy ============================ -->
+  <section id="privacy">
+    <div class="wrap split">
+      <div class="stack reveal">
+        <p class="eyebrow">On your Mac, and nowhere else</p>
+        <h2>A screen effect has no business phoning home</h2>
+        <p class="lede">
+          Every effect except Dim needs a picture of your desktop to transform. That picture is a single
+          image in memory, and it never goes anywhere.
+        </p>
+        <p class="tiny">
+          Screen Recording permission is only requested when you ask for it — in the first-run guide, which
+          explains it first, or with the button in the menu. You can say “Not Now”, and Dim needs no
+          permission at all.
+        </p>
+      </div>
+      <ul class="checklist reveal">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>Nothing is written to disk.</b> No recording, no screenshots saved, no cache of your desktop.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>No network, no analytics, no account.</b> There is no server side, and no third-party dependency.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>App Sandbox and Hardened Runtime stay on.</b> No helper tool, no privileged process, no input monitoring.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>The built-in display only.</b> External monitors are never touched, and your brightness setting is left alone.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>The image is dropped on the way back.</b> Reopening, switching effects, pausing or quitting releases it immediately.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ Requirements ============================ -->
+  <section id="requirements">
+    <div class="wrap wrap-narrow">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you try it</p>
+        <h2>What LidShift needs</h2>
+      </div>
+
+      <dl class="spec-list reveal">
+        <div><dt>macOS</dt><dd>15.0 or newer</dd></div>
+        <div><dt>Mac</dt><dd>A MacBook whose hinge reports a lid angle. On a Mac without that sensor, LidShift says <em>Unsupported / unavailable</em> and keeps running.</dd></div>
+        <div><dt>Permission</dt><dd>Screen Recording for Glass, Shutter, Paper, Dust, Burn, Freeze &amp; Shatter and CRT. Dim needs none.</dd></div>
+        <div><dt>Display</dt><dd>The built-in display. External monitors are unaffected.</dd></div>
+        <div><dt>Footprint</dt><dd>Menu bar only, no Dock icon, with optional Launch at Login.</dd></div>
+        <div><dt>Build</dt><dd>Xcode 26.6. Open <code>LidShift.xcodeproj</code>, pick the LidShift scheme and My&nbsp;Mac, and Run. The Metal shader needs Xcode’s optional Metal Toolchain — <code>xcodebuild -downloadComponent MetalToolchain</code> — which is not an end-user dependency.</dd></div>
+      </dl>
+
+      <div class="callout reveal" style="margin-top:2.25rem">
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg> A proof of concept, honestly labelled</h3>
+        <p>
+          Apple publishes no documented API for the lid angle. LidShift calls only public IOKit HID
+          functions — it links no private frameworks — but the sensor protocol they speak was never
+          documented for third-party use. It can change between macOS releases and Mac models.
+        </p>
+        <p>
+          Your settings are saved, but the sensor underneath is still unofficial. Treat LidShift as a
+          prototype worth playing with, not as App&nbsp;Store-ready software.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section>
+    <div class="wrap">
+      <div class="cta reveal">
+        <img src="assets/icon-256.png" alt="" width="72" height="72" style="border-radius:22%;box-shadow:var(--shadow-lift)">
+        <h2>Give the last few degrees something to do</h2>
+        <p class="lede" style="max-width:44ch;margin-inline:auto;text-align:center">
+          LidShift is a small, native, one-person project. Questions, a Mac model that works — or one that
+          doesn’t — are all welcome.
+        </p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn-primary" href="mailto:info@hildel.com?subject=LidShift">
+            <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+            Get in touch
+          </a>
+          <a class="btn btn-secondary" href="#demo">
+            <svg class="ico" aria-hidden="true"><use href="#i-hand"/></svg>
+            Try the demo again
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="#effects">Effects</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#requirements">Requirements</a>
+      <a href="impressum.html">Legal Notice</a>
+      <a class="lang" href="index-de.html" hreflang="de" lang="de">Deutsch</a>
+    </div>
+    <p class="footer-note tiny">
+      © <span id="year">2026</span> Peter Hildel · LidShift is not affiliated with Apple Inc.
+      Apple, Mac, MacBook, macOS and Metal are trademarks of Apple&nbsp;Inc.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=1"></script>
+<script src="assets/lid.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LidShift — Beweg den Deckel. Setz die Stimmung.</title>
+  <meta name="description" content="LidShift ist ein macOS-Programm in der Menüleiste, das den echten Scharnierwinkel deines MacBooks liest und das Zuklappen in einen Effekt auf deinem Schreibtisch verwandelt: Milchglas, aufrollendes Papier, verwehender Staub, ein Brand, zerspringendes Eis oder eine erlöschende Bildröhre.">
+  <link rel="canonical" href="https://v4ulthunt3r.github.io/lidshift-website/index-de.html">
+  <link rel="alternate" hreflang="en" href="https://v4ulthunt3r.github.io/lidshift-website/index.html">
+  <link rel="alternate" hreflang="de" href="https://v4ulthunt3r.github.io/lidshift-website/index-de.html">
+  <link rel="alternate" hreflang="x-default" href="https://v4ulthunt3r.github.io/lidshift-website/index.html">
+  <meta name="theme-color" content="#070E1C" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LidShift — Beweg den Deckel. Setz die Stimmung.">
+  <meta property="og:description" content="Ein macOS-Programm in der Menüleiste, das den echten Scharnierwinkel deines MacBooks liest und das Zuklappen in einen Effekt auf deinem Schreibtisch verwandelt.">
+  <meta property="og:image" content="https://v4ulthunt3r.github.io/lidshift-website/assets/icon-512.png">
+  <meta property="og:locale" content="de">
+  <meta property="og:locale:alternate" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <script>
+    /* Dunkel ist das Zuhause dieser App – die Wahl der Leserin gewinnt trotzdem. */
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light') document.documentElement.classList.remove('dark');
+        else if (saved === 'dark') document.documentElement.classList.add('dark');
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches)
+          document.documentElement.classList.remove('dark');
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/landing.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<div class="ambient" aria-hidden="true"><i class="amb amb-1"></i><i class="amb amb-2"></i><i class="amb amb-3"></i></div>
+
+<svg class="lidshift-icons" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-laptop" viewBox="0 0 24 24"><path d="M5 5.5h14a1 1 0 0 1 1 1v9H4v-9a1 1 0 0 1 1-1Z"/><path d="M2 15.5h20l-1.4 2.3a1.6 1.6 0 0 1-1.4.7H4.8a1.6 1.6 0 0 1-1.4-.7Z"/></symbol>
+<symbol id="i-angle" viewBox="0 0 24 24"><path d="M3.5 19.5h17"/><path d="M3.5 19.5 15.5 6"/><path d="M19.2 12.4a8.2 8.2 0 0 0-2.6-4.6"/></symbol>
+<symbol id="i-glass" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 12.5h17"/><path d="M6.5 8h5M6.5 16.8h3"/></symbol>
+<symbol id="i-shutter" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 10.5h17" /><path d="M4 7h16M4 4.6h16" /></symbol>
+<symbol id="i-paper" viewBox="0 0 24 24"><path d="M6 2.8h8.4L19 7.4V21a.8.8 0 0 1-.8.8H6a.8.8 0 0 1-.8-.8V3.6A.8.8 0 0 1 6 2.8Z"/><path d="M14 2.9v4.6h4.7"/><path d="M8 12.5h7M8 16.3h4.5"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M8 2.5l4 3 4-3"/><path d="M6 12h12"/></symbol>
+<symbol id="i-dim" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4"/><path d="M12 4.2V2.5M12 21.5v-1.7M5.5 5.5 4.3 4.3M19.7 19.7l-1.2-1.2M4.2 12H2.5M21.5 12h-1.7"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17.5 7H20M4 17h3M11.5 17H20"/><circle cx="15" cy="7" r="2.3"/><circle cx="9" cy="17" r="2.3"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.2 17.5a9.5 9.5 0 1 1 17.6 0"/><path d="M12 13.5 16 9.8"/><circle cx="12" cy="14.4" r="1.4"/></symbol>
+<symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3.2v8"/><path d="M6.6 6.4a7.5 7.5 0 1 0 10.8 0"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2.2"/><path d="M10 3.5v2.6M14 3.5v2.6M10 17.9v2.6M14 17.9v2.6M3.5 10h2.6M3.5 14h2.6M17.9 10h2.6M17.9 14h2.6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M7.8 10.5V7.2a4.2 4.2 0 0 1 8.4 0v3.3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 4 5.7v5.6c0 4.6 3.2 8.6 8 10.2 4.8-1.6 8-5.6 8-10.2V5.7Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="m8 12.3 2.8 2.8L16.2 9"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 10.8v6M12 7.6h.01"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4.5v15"/><path d="m6 13.5 6 6 6-6"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 11V5.4a1.9 1.9 0 0 1 3.8 0V11"/><path d="M11.8 11V4.3a1.9 1.9 0 0 1 3.8 0V11"/><path d="M15.6 11.6V6.9a1.9 1.9 0 0 1 3.8 0V14a7.5 7.5 0 0 1-7.5 7.5h-.8a7 7 0 0 1-6.6-4.7L3 13.2a1.9 1.9 0 0 1 3.3-1.8L8 13.6V11"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3.5h9.5L19 8v12.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-16a1 1 0 0 1 1-1Z"/><path d="M14 3.6V8h4.6"/><path d="M8 13h8M8 17h5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8"/><path d="M12 2.5a14.5 14.5 0 0 1 0 19 14.5 14.5 0 0 1 0-19Z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.6 6.2A9.7 9.7 0 0 1 12 6c5.5 0 9.5 6 9.5 6a17 17 0 0 1-3 3.6"/><path d="M6.6 7.6A17 17 0 0 0 2.5 12S6.5 18 12 18a9.6 9.6 0 0 0 4.1-.9"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m3 3 18 18"/></symbol>
+<symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M2.5 8.5a14 14 0 0 1 6-3.3M15 5.3a14 14 0 0 1 6.5 3.2"/><path d="M6 12.2a9 9 0 0 1 3-1.9M18 12.2a9 9 0 0 0-2.2-1.5"/><path d="M9.4 15.8a4.2 4.2 0 0 1 5.2 0"/><path d="M12 19.2h.01"/><path d="m3 3 18 18"/></symbol>
+<symbol id="i-dust" viewBox="0 0 24 24"><path d="M2.5 10.5h9.2a2.8 2.8 0 1 0-2.8-2.8"/><path d="M2.5 14.5h12.8a2.8 2.8 0 1 1-2.8 2.8"/><circle cx="17.6" cy="7.4" r=".7"/><circle cx="20.6" cy="10.8" r=".55"/><circle cx="19.4" cy="4.2" r=".45"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21.5c-4.1 0-7-2.9-7-6.7 0-3.5 2.4-5.4 4.1-8 .8 1.6 1.7 2.6 3 3.1-.1-2.8.9-5.4 3-7.4.4 3.2 4.9 6 4.9 11.3 0 4.5-3.5 7.7-8 7.7Z"/><path d="M12 21.5c-1.8 0-3.2-1.3-3.2-3.1 0-1.8 1.5-3 3.2-4.9 1.7 1.9 3.2 3.1 3.2 4.9 0 1.8-1.4 3.1-3.2 3.1Z"/></symbol>
+<symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2.5v19M3.8 7.25l16.4 9.5M3.8 16.75l16.4-9.5"/><path d="m9.4 4.1 2.6 2 2.6-2M9.4 19.9l2.6-2 2.6 2"/><path d="m3.6 10.3 3.1-1.2-.5-3.3M20.4 13.7l-3.1 1.2.5 3.3"/><path d="m6.2 18.2.5-3.3-3.1-1.2M17.8 5.8l-.5 3.3 3.1 1.2"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8.5 8-4.5 4 4.5 4M15.5 8l4.5 4-4.5 4"/></symbol>
+</defs></svg>
+
+<!-- Filters the demo's Burn and Freeze & Shatter layers reference. lid.js tunes #ice per frame. -->
+<svg class="fx-filters" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <filter id="burn-edge" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="11" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="ice" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="4" result="noise"/>
+    <feDisplacementMap data-ice-bend in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" result="bent"/>
+    <feColorMatrix data-ice-matrix in="bent" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="tinted"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.77  0 0 0 0 0.91  0 0 0 0 0.98  1.7 0 0 0 -0.72" result="frost"/>
+    <feComponentTransfer in="frost" result="rime"><feFuncA data-ice-rime type="linear" slope="0" intercept="0"/></feComponentTransfer>
+    <feComposite in="rime" in2="bent" operator="in" result="rimeOnIce"/>
+    <feMerge><feMergeNode in="tinted"/><feMergeNode in="rimeOnIce"/></feMerge>
+  </filter>
+</svg>
+
+<div id="nav-top" aria-hidden="true"></div>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index-de.html">
+      <img src="assets/icon-256.png" alt="" width="30" height="30">
+      <span>LidShift</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link hide-sm" href="#effects">Effekte</a>
+      <a class="nav-link hide-sm" href="#how">So funktioniert&nbsp;es</a>
+      <a class="nav-link hide-sm" href="#requirements">Voraussetzungen</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Zwischen hellem und dunklem Erscheinungsbild wechseln" aria-pressed="true">
+        <svg class="ico" id="theme-icon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <a class="nav-link" href="index.html" hreflang="en" lang="en">EN</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ============================ Hero ============================ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <img class="hero-icon" src="assets/icon-512.png" alt="App-Symbol von LidShift" width="96" height="96">
+        <p class="eyebrow">macOS-Programm für die Menüleiste</p>
+        <h1>Beweg den Deckel.<br><span class="accent">Setz die Stimmung.</span></h1>
+        <p class="lede">
+          Dein MacBook weiß ganz genau, wie weit sein Scharnier geöffnet ist — auf das Grad
+          genau. LidShift liest diesen Winkel und macht aus den letzten Zentimetern des
+          Zuklappens etwas, das man gern ansieht.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#effects">
+            Effekte ansehen
+            <svg class="ico" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="#requirements">Was es braucht</a>
+        </div>
+        <div class="pill-row">
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg> Nur das eingebaute Display</span>
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-wifi-off"/></svg> Nichts verlässt deinen Mac</span>
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-power"/></svg> Wohnt in der Menüleiste</span>
+        </div>
+      </div>
+
+      <!-- Zieh am Deckel; der Schreibtisch antwortet im selben Frame. -->
+      <div class="demo" id="demo">
+        <div class="demo-top">
+          <div>
+            <p class="angle-label" id="angle-label">Deckelwinkel</p>
+            <p class="angle-readout" aria-hidden="true">
+              <span class="value" data-angle-value>106</span><span class="unit">°</span>
+            </p>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <svg viewBox="0 0 60 56" width="56" height="52" aria-hidden="true" style="overflow:visible">
+              <path data-gauge-arc d="M 36 46 A 26 26 0 0 0 10 20" fill="none" stroke="var(--accent)" stroke-width="3.4" stroke-linecap="round" opacity=".95"/>
+              <path d="M10 46 H 52" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" opacity=".55"/>
+              <path data-gauge-arm d="M10 46 H 40" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+              <circle cx="10" cy="46" r="2.2" fill="currentColor"/>
+            </svg>
+            <span class="grab-hint" data-hint>
+              <svg class="ico" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-hand"/></svg>
+              Zieh am Deckel
+            </span>
+          </div>
+        </div>
+
+        <div class="stage" data-lid-stage>
+          <div class="mac">
+            <div class="lid-hinge" data-lid
+                 role="slider" tabindex="0"
+                 aria-labelledby="angle-label"
+                 aria-valuemin="12" aria-valuemax="132" aria-valuenow="106"
+                 aria-valuetext="106 Grad" data-valuetext="%d Grad">
+              <div class="lid">
+                <div class="screen" data-screen data-effect="glass">
+                  <div class="desktop">
+                    <div class="desk-menubar">
+                      <i></i><i></i><i></i><i></i>
+                      <span class="spacer"></span>
+                      <i class="mb-icon"></i>
+                    </div>
+                    <div class="desk-window">
+                      <div class="titlebar"><b></b><b></b><b></b></div>
+                      <div class="body"><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="desk-dock"><i></i><i></i><i></i><i></i><i></i></div>
+                  </div>
+                  <div class="fx fx-glass"><span class="glass-veil"></span><span class="glass-ridge"></span></div>
+                  <div class="fx fx-shutter"></div>
+                  <div class="fx fx-paper"><span class="paper-void"></span><span class="paper-roll"></span></div>
+                  <div class="fx fx-crt"><span class="crt-void"></span><span class="crt-line"></span></div>
+                  <div class="fx fx-dust"><canvas></canvas></div>
+                  <div class="fx fx-burn"><span class="burn-hole"></span></div>
+                  <div class="fx fx-freeze"></div>
+                  <div class="fx fx-dim"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mac-base"></div>
+            <div class="mac-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <label for="angle-slider">12°</label>
+          <input id="angle-slider" type="range" min="12" max="132" step="1" value="106" data-angle-slider
+                 aria-label="Deckelwinkel in Grad">
+          <label for="angle-slider">132°</label>
+        </div>
+
+        <div class="effect-picker" role="group" aria-label="Effekt auswählen">
+          <button class="fx-card" type="button" data-effect="glass" aria-pressed="true"
+                  data-caption="<b>Glass.</b> Milchglas und Brechung sammeln sich an der wandernden Kante, dazu ein Schatten von oben, der mit dem Deckel tiefer wird.">
+            <svg class="ico" aria-hidden="true"><use href="#i-glass"/></svg> Glass
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="shutter" aria-pressed="false"
+                  data-caption="<b>Shutter.</b> Ein weicher dunkler Vorhang folgt dem Deckel über das Display und steht an beiden Enden komplett außerhalb des Bildes.">
+            <svg class="ico" aria-hidden="true"><use href="#i-shutter"/></svg> Shutter
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="paper" aria-pressed="false"
+                  data-caption="<b>Paper.</b> Der Schreibtisch wickelt sich nach unten zu einem durchgehenden Bogen auf — weite Rolle, matte Rückseite, sichtbare Kanten und ein Auflageschatten.">
+            <svg class="ico" aria-hidden="true"><use href="#i-paper"/></svg> Paper
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="dust" aria-pressed="false"
+                  data-caption="<b>Dust.</b> Eine zerklüftete diagonale Front zerlegt den Schreibtisch in feine Körner, die auf wirbelnden Strömungen nach rechts oben davontreiben.">
+            <svg class="ico" aria-hidden="true"><use href="#i-dust"/></svg> Dust
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="burn" aria-pressed="false"
+                  data-caption="<b>Burn.</b> Eine unregelmäßige Front brennt sich von allen vier Rändern nach innen — glühende Glut, ein Band aus Holzkohle, dann Asche, die zu Schwarz verblasst.">
+            <svg class="ico" aria-hidden="true"><use href="#i-flame"/></svg> Burn
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="freeze" aria-pressed="false"
+                  data-caption="<b>Freeze &amp; Shatter.</b> Blaues Eis und Raureif kriechen über den Schreibtisch, Risse brechen auf, und die gefrorenen Scherben drehen sich und fallen herab.">
+            <svg class="ico" aria-hidden="true"><use href="#i-snow"/></svg> Freeze &amp;&nbsp;Shatter
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="crt" aria-pressed="false"
+                  data-caption="<b>CRT.</b> Das Bild wird zur Mitte hin zusammengedrückt und verabschiedet sich durch eine einzelne kühle Lichtlinie.">
+            <svg class="ico" aria-hidden="true"><use href="#i-tv"/></svg> CRT
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+          <button class="fx-card" type="button" data-effect="dim" aria-pressed="false"
+                  data-caption="<b>Dim only.</b> Keine Aufnahme, keine Berechtigung — das Display wird einfach dunkler, während der Deckel sinkt.">
+            <svg class="ico" aria-hidden="true"><use href="#i-dim"/></svg> Dim
+            <svg class="ico tick" aria-hidden="true"><use href="#i-check"/></svg>
+          </button>
+        </div>
+
+        <p class="demo-caption" data-caption-out aria-live="polite"></p>
+        <p class="tiny">Eine Illustration der Effekte, im Browser gezeichnet. In der App rendert Metal deinen echten Schreibtisch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Effekte ============================ -->
+  <section id="effects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Sieben Effekte und ein leiser</p>
+        <h2>Zuklappen als kleines Ereignis</h2>
+        <p class="lede">
+          Jeder Effekt ist bereit, sobald du über den Startwinkel öffnest, und läuft beim Schließen ab.
+          Halte auf halbem Weg an und dreh um — er folgt dir zurück nach oben, und dein scharfer
+          Schreibtisch ist wieder da.
+        </p>
+      </div>
+
+      <div class="effect-list">
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-glass"/></svg></span>
+          <div>
+            <h3>Glass</h3>
+            <p>Eine Scheibe Milchglas schiebt sich von oben über den Schreibtisch. Brechung und Unschärfe
+              konzentrieren sich an der abgerundeten wandernden Kante, und ein Schatten von oben wächst mit
+              dem Zuklappen mit — ohne je eine schwarze Lücke zu hinterlassen. Brechung, Unschärfe, Glas und
+              Abdunklung haben jeweils einen eigenen Regler.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-shutter"/></svg></span>
+          <div>
+            <h3>Shutter</h3>
+            <p>Ein weicher dunkler Vorhang senkt sich von oben herab und deckt das Display ab, während der
+              Deckel sinkt. An beiden Enden des Bereichs liegt er vollständig außerhalb des Bildes, damit
+              nichts stehen bleibt.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-paper"/></svg></span>
+          <div>
+            <h3>Paper</h3>
+            <p>Der Schreibtisch wickelt sich nach unten zu einem durchgehenden 3D-Bogen auf, Windung um
+              Windung um eine waagerechte Achse. Eine matte, leicht faserige Rückseite fängt warmes Licht an der
+              Rolle, sichtbare Seitenkanten und ein Auflageschatten geben ihr Dicke. Darüber wird das Display
+              schwarz — samt Menüleiste und Dock.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-dust"/></svg></span>
+          <div>
+            <h3>Dust</h3>
+            <p>Eine unregelmäßige diagonale Front zerlegt den Schreibtisch in feine Fragmente — 144.000
+              davon auf einem leicht verrüttelten Gitter. Sie werden zu warmem, neutralem Staub und treiben auf
+              gemeinsamen, wirbelnden Strömungen nach rechts oben, in dichten Bändern mit lichten Lücken, bis nur
+              Schwarz bleibt. Klappst du wieder auf, findet jedes Korn zurück an seinen Platz.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-flame"/></svg></span>
+          <div>
+            <h3>Burn</h3>
+            <p>Eine unregelmäßige Front brennt sich von allen vier Rändern nach innen. Vorneweg ein hell
+              glühender Glutsaum, dahinter ein Band aus Holzkohle, und die Asche verblasst zu Schwarz, während
+              der Deckel sinkt. Beim Aufklappen ist der Schreibtisch wieder genau so, wie er war.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-snow"/></svg></span>
+          <div>
+            <h3>Freeze &amp; Shatter</h3>
+            <p>Durchscheinendes blaues Eis kriecht über den Schreibtisch: wolkiger Raureif, sechsstrahlige
+              Kristalladern, etwas Lichtbrechung und wandernde Glanzlichter. Helle, facettierte Risse brechen
+              auf, dann zerfällt das gefrorene Bild in Scherben, die sich drehen und herabfallen, je weiter
+              der Deckel sich schließt.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-tv"/></svg></span>
+          <div>
+            <h3>CRT</h3>
+            <p>Das Bild wird senkrecht zur Mitte hin zusammengedrückt und erlischt dann durch eine einzelne
+              kühle Lichtlinie — so, wie eine Bildröhre früher ein Bild losgelassen hat.</p>
+          </div>
+        </div>
+        <div class="effect-item reveal">
+          <span class="glyph"><svg class="ico" aria-hidden="true"><use href="#i-dim"/></svg></span>
+          <div>
+            <h3>Dim only</h3>
+            <p>Der schlichte Effekt. Eine schwarze, für die Maus durchlässige Ebene über dem eingebauten
+              Display: über 90° unsichtbar, bei 20° zu 60&nbsp;% deckend. Keine Bildschirmaufnahme, keine
+              Berechtigungsabfrage — und keine Änderung an deiner Helligkeitseinstellung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ So funktioniert es ============================ -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">So funktioniert es</p>
+        <h2>Ein Sensor, ein Bild, sechzigmal pro Sekunde</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-angle"/></svg></span>
+          <h3>Es liest das Scharnier, keinen Schalter</h3>
+          <p>macOS kann dir sagen, ob der Deckel offen oder zu ist. Das Scharnier selbst kennt den Winkel.
+            LidShift fragt diesen internen Sensor rund dreißigmal pro Sekunde über öffentliche
+            IOKit-HID-Funktionen ab und zeigt volle Grad — ohne erfundene Nachkommastellen.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-eye-off"/></svg></span>
+          <h3>Ein Bild, nur im Arbeitsspeicher</h3>
+          <p>Sobald du den Startwinkel nach unten überschreitest, nimmt die App ein einzelnes Bild des
+            eingebauten Displays auf — ohne die eigenen Fenster und ohne Mauszeiger. Eine Aufnahme pro
+            Zu-und-wieder-auf. Nichts wird aufgezeichnet, gespeichert oder verschickt.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-gauge"/></svg></span>
+          <h3>Den Rest übernimmt Metal</h3>
+          <p>Eine an das Display gekoppelte Zeichenschleife läuft mit 60 FPS, mit dem optionalen
+            ProMotion-Schalter bis zu 120, während ein 45-ms-Filter die Bewegung zwischen den Sensorwerten
+            glättet. Ist alles zur Ruhe gekommen, pausiert das Rendern, statt die GPU zu beschäftigen.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg></span>
+          <h3>In vier Schritten eingerichtet</h3>
+          <p>Beim ersten Start führt dich LidShift durch: was die App tut, ein Live-Check, ob dein
+            Scharniersensor antwortet, warum die Bildschirmaufnahme nötig ist — erklärt, bevor macOS fragt —
+            und ein echter Test mit Auf- und Zuklappen. Über <em>Advanced → Getting Started…</em> holst du ihn
+            jederzeit zurück.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg></span>
+          <h3>Nach deinem Geschmack</h3>
+          <p>In den Effekteinstellungen liegt der Startwinkel von 60° bis 120°, dazu Brechung, Unschärfe,
+            Glas und Abdunklung für Glass. Änderungen greifen sofort, auch wenn der Deckel stillsteht — und
+            dein Effekt, seine Einstellungen und der Aktiv-Schalter bleiben über Neustarts hinweg erhalten.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg></span>
+          <h3>Hält sich raus</h3>
+          <p>Kein Dock-Symbol, kein Fenster, um das du dich kümmern musst — ein Symbol in der Menüleiste und
+            dahinter ein kompaktes Panel mit dem aktuellen Winkel, einem einzigen Aktiv-Schalter und deinem
+            Effekt. Die Ebene ist für die Maus durchlässig: Die Apps darunter laufen weiter und bleiben
+            anklickbar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Datenschutz ============================ -->
+  <section id="privacy">
+    <div class="wrap split">
+      <div class="stack reveal">
+        <p class="eyebrow">Auf deinem Mac und sonst nirgends</p>
+        <h2>Ein Bildschirmeffekt hat nichts nach Hause zu funken</h2>
+        <p class="lede">
+          Jeder Effekt außer Dim braucht ein Bild deines Schreibtischs, um es zu verwandeln. Dieses Bild ist
+          ein einzelnes Objekt im Arbeitsspeicher — und es geht nirgendwo hin.
+        </p>
+        <p class="tiny">
+          Die Berechtigung zur Bildschirmaufnahme wird nur abgefragt, wenn du darum bittest — in der
+          Einführung beim ersten Start, die sie vorher erklärt, oder über die Schaltfläche im Menü. Du kannst
+          sie auch später erteilen, und Dim braucht überhaupt keine.
+        </p>
+      </div>
+      <ul class="checklist reveal">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>Nichts wird auf die Festplatte geschrieben.</b> Keine Aufzeichnung, keine gespeicherten Screenshots, kein Zwischenspeicher deines Schreibtischs.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>Kein Netzwerk, keine Analyse, kein Konto.</b> Es gibt keine Serverseite und keine Abhängigkeit von Dritten.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>App Sandbox und Hardened Runtime bleiben an.</b> Kein Hilfsprogramm, kein privilegierter Prozess, keine Eingabeüberwachung.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>Nur das eingebaute Display.</b> Externe Monitore werden nie angefasst, und deine Helligkeitseinstellung bleibt, wie sie ist.</span></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <span><b>Auf dem Rückweg wird das Bild verworfen.</b> Aufklappen, Effektwechsel, Pause oder Beenden geben es sofort frei.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ Voraussetzungen ============================ -->
+  <section id="requirements">
+    <div class="wrap wrap-narrow">
+      <div class="section-head reveal">
+        <p class="eyebrow">Bevor du es ausprobierst</p>
+        <h2>Was LidShift braucht</h2>
+      </div>
+
+      <dl class="spec-list reveal">
+        <div><dt>macOS</dt><dd>15.0 oder neuer</dd></div>
+        <div><dt>Mac</dt><dd>Ein MacBook, dessen Scharnier einen Deckelwinkel meldet. Auf einem Mac ohne diesen Sensor meldet LidShift <em>Unsupported / unavailable</em> und läuft weiter.</dd></div>
+        <div><dt>Berechtigung</dt><dd>Bildschirmaufnahme für Glass, Shutter, Paper, Dust, Burn, Freeze &amp; Shatter und CRT. Dim braucht keine.</dd></div>
+        <div><dt>Display</dt><dd>Das eingebaute Display. Externe Monitore bleiben unberührt.</dd></div>
+        <div><dt>Platzbedarf</dt><dd>Nur die Menüleiste, kein Dock-Symbol, auf Wunsch Start bei der Anmeldung.</dd></div>
+        <div><dt>Bauen</dt><dd>Xcode 26.6. <code>LidShift.xcodeproj</code> öffnen, das Schema LidShift und My&nbsp;Mac wählen, Run. Der Metal-Shader braucht Xcodes optionale Metal Toolchain — <code>xcodebuild -downloadComponent MetalToolchain</code> — die für Nutzerinnen und Nutzer keine zusätzliche Abhängigkeit ist.</dd></div>
+      </dl>
+
+      <div class="callout reveal" style="margin-top:2.25rem">
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg> Ein Proof of Concept, ehrlich benannt</h3>
+        <p>
+          Apple veröffentlicht keine dokumentierte Schnittstelle für den Deckelwinkel. LidShift ruft
+          ausschließlich öffentliche IOKit-HID-Funktionen auf und bindet keine privaten Frameworks ein —
+          aber das Sensorprotokoll, das dabei gesprochen wird, wurde nie für Dritte dokumentiert. Es kann
+          sich zwischen macOS-Versionen und Mac-Modellen ändern.
+        </p>
+        <p>
+          Deine Einstellungen werden gespeichert, der Sensor darunter bleibt aber inoffiziell. Betrachte
+          LidShift als Prototyp zum Ausprobieren, nicht als fertige Software für den App&nbsp;Store.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section>
+    <div class="wrap">
+      <div class="cta reveal">
+        <img src="assets/icon-256.png" alt="" width="72" height="72" style="border-radius:22%;box-shadow:var(--shadow-lift)">
+        <h2>Gib den letzten Graden etwas zu tun</h2>
+        <p class="lede" style="max-width:44ch;margin-inline:auto;text-align:center">
+          LidShift ist ein kleines, natives Ein-Personen-Projekt. Fragen, ein Mac-Modell, das funktioniert —
+          oder eines, das es nicht tut — sind alle willkommen.
+        </p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn-primary" href="mailto:info@hildel.com?subject=LidShift">
+            <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+            Schreib mir
+          </a>
+          <a class="btn btn-secondary" href="#demo">
+            <svg class="ico" aria-hidden="true"><use href="#i-hand"/></svg>
+            Nochmal ausprobieren
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="index-de.html">Startseite</a>
+      <a href="#effects">Effekte</a>
+      <a href="#privacy">Datenschutz</a>
+      <a href="#requirements">Voraussetzungen</a>
+      <a href="impressum-de.html">Impressum</a>
+      <a class="lang" href="index.html" hreflang="en" lang="en">English</a>
+    </div>
+    <p class="footer-note tiny">
+      © <span id="year">2026</span> Peter Hildel · LidShift steht in keiner Verbindung zu Apple Inc.
+      Apple, Mac, MacBook, macOS und Metal sind Marken von Apple&nbsp;Inc.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=1"></script>
+<script src="assets/lid.js?v=2"></script>
+</body>
+</html>
